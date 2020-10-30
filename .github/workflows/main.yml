@@ -34,5 +34,8 @@ jobs:
         run:  docker build -t nexus.blindspot.ai/czmodelling/neherlab .
 
       - name: Push Build Image 
-        run:  docker push nexus.blindspot.ai/czmodelling/neherlab .
+        run:  |
+          docker push nexus.blindspot.ai/czmodelling/neherlab
+          docker tag nexus.blindspot.ai/czmodelling/neherlab nexus.blindspot.ai/czmodelling/neherlab:$GITHUB_SHA
+          docker push nexus.blindspot.ai/czmodelling/neherlab:$GITHUB_SHA
           
