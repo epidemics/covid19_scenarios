@@ -8,6 +8,7 @@ import {
 } from './types/Result.types'
 
 import { msPerDay } from './initialize'
+import { over } from 'lodash'
 
 const eulerStep = 0.5
 export const eulerStepsPerDay = Math.round(1 / eulerStep)
@@ -274,6 +275,22 @@ function derivative(flux: StateFlux): TimeDerivative {
   return grad
 }
 
+// NOTE(gavento): this is JK's initial model for number of traced people
+// based on positively tested people
+function tracingReductionCZ(sumInfected: number): number {
+  const over_and_traced = [[0, 0.3], [1000, 0.25], [2000, 0.2], [3000, 0.1], [5000, 0.0]]
+  let traced = 0.0
+  over_and_traced.reverse().forEach((a) => {
+    const over = a[0]
+    const tracedFrac = a[1]
+    if (sumInfected > over) {
+      traced += (sumInfected - over) * tracedFrac
+      sumInfected = over
+    }
+  })
+  return traced
+}
+
 function fluxes(time: number, pop: SimulationTimePoint, P: ModelParams): StateFlux {
   // Convention: flux is labelled by the state
   const flux: StateFlux = {
@@ -301,19 +318,31 @@ function fluxes(time: number, pop: SimulationTimePoint, P: ModelParams): StateFl
   // Compute all fluxes (apart from overflow states) barring no hospital bed constraints
   const fracInfected = sum(pop.current.infectious) / P.populationServed
 
+  // NOTE(gavento): first, compute exposed to estimate current infection size
   for (let age = 0; age < pop.current.infectious.length; age++) {
     // Initialize all multi-faceted states with internal arrays
     flux.exposed[age] = Array(pop.current.exposed[age].length)
-
-    // Susceptible -> Exposed
-    flux.susceptible[age] =
-      P.importsPerDay[age] +
-      (1 - P.frac.isolated[age]) * P.rate.infection(time) * pop.current.susceptible[age] * fracInfected
 
     // Exposed -> Internal -> Infectious
     pop.current.exposed[age].forEach((exposed, i, exposedArray) => {
       flux.exposed[age][i] = P.rate.latency * exposed * exposedArray.length
     })
+  }
+
+  // Estimate new infectious 
+  let sumInfected = 0.0;
+  flux.exposed.forEach((exposedArray, age) => {
+    sumInfected += exposedArray[exposedArray.length - 1]
+  })
+  // TODO(gavento): only activate this for CZ, or otherwise parameterize!
+  const tracingReduction = 1.0 - (tracingReductionCZ(sumInfected) / sumInfected)
+
+  for (let age = 0; age < pop.current.infectious.length; age++) {
+    // Susceptible -> Exposed
+    flux.susceptible[age] =
+      P.importsPerDay[age] +
+      (1 - P.frac.isolated[age]) * P.rate.infection(time) * tracingReduction * pop.current.susceptible[age] * fracInfected
+
 
     // Infectious -> Recovered/Critical
     flux.infectious.recovered[age] = pop.current.infectious[age] * P.rate.recovery[age]
