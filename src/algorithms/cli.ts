@@ -95,7 +95,7 @@ async function main() {
     console.log('Running the model')
     const result = await run({ params, severity, ageDistribution })
     console.log('Run complete')
-    console.log(result)
+    // console.log(result)
     console.log(`Writing output to ${outputFile}`)
     fs.writeFileSync(outputFile, JSON.stringify(result))
   } catch (error) {

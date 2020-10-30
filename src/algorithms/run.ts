@@ -73,6 +73,13 @@ function burnIn(
 }
 
 export async function run({ params, severity, ageDistribution }: RunParams): Promise<AlgorithmResult> {
+  // hotfixing the problem with date deserialization ...
+  // TODO: fix this in a proper way!
+  params.mitigationIntervals.forEach((interval) => {
+    interval.timeRange.begin = new Date(interval.timeRange.begin)
+    interval.timeRange.end = new Date(interval.timeRange.end)
+  })
+
   const tMin: number = new Date(params.simulationTimeRange.begin).getTime()
   const tMax: number = new Date(params.simulationTimeRange.end).getTime()
   const ageGroups = ageDistribution.map((d) => d.ageGroup)
