@@ -1,0 +1,41 @@
+  
+name: CI
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    branches: [ master ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+        
+      - name: Login to nexus
+        env:
+          NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
+          NEXUS_USER: ${{ secrets.NEXUS_USER }}
+        run:  docker login -u $NEXUS_USER -p $NEXUS_PASSWORD nexus.blindspot.ai
+      
+      - name: Set up environment
+        run: |
+          cp .env.example .env
+          sed -i "1s/.*/FULL_DOMAIN=localhost/" .env
+          
+      - name: Build Docker 
+        run:  docker build -t nexus.blindspot.ai/czmodelling/neherlab .
+
+      - name: Push Build Image 
+        run:  |
+          docker push nexus.blindspot.ai/czmodelling/neherlab
+          docker tag nexus.blindspot.ai/czmodelling/neherlab nexus.blindspot.ai/czmodelling/neherlab:$GITHUB_SHA
+          docker push nexus.blindspot.ai/czmodelling/neherlab:$GITHUB_SHA
+          

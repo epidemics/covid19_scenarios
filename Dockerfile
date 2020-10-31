@@ -10,5 +10,5 @@ COPY / /app
 RUN yarn install
 RUN yarn monkey-patch && yarn schema:totypes 
 RUN yarn prod:build
-CMD yarn prod:serve
 
+CMD yarn prod:serve
