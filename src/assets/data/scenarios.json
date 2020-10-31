@@ -9758,148 +9758,197 @@
     },
     {
       "data": {
-        "epidemiological": {
-          "hospitalStayDays": 3.0,
-          "icuStayDays": 14.0,
-          "infectiousPeriodDays": 3.0,
-          "latencyDays": 3.0,
-          "overflowSeverity": 2.0,
-          "peakMonth": 0,
-          "r0": {
-            "begin": 2.46,
-            "end": 3.0
-          },
-          "seasonalForcing": 0.0
-        },
-        "mitigation": {
-          "mitigationIntervals": [
-            {
-              "color": "#cccccc",
-              "name": "Intervention 0",
-              "timeRange": {
-                "begin": "2020-01-07",
-                "end": "2020-02-28"
-              },
-              "transmissionReduction": {
-                "begin": 99.0,
-                "end": 99.0
-              }
-            },
-            {
-              "color": "#cccccc",
-              "name": "Intervention 1",
-              "timeRange": {
-                "begin": "2020-02-28",
-                "end": "2020-03-20"
-              },
-              "transmissionReduction": {
-                "begin": 11.5,
-                "end": 12.5
-              }
-            },
-            {
-              "color": "#cccccc",
-              "name": "Intervention 2",
-              "timeRange": {
-                "begin": "2020-03-20",
-                "end": "2020-04-10"
-              },
-              "transmissionReduction": {
-                "begin": 62.1,
-                "end": 73.9
-              }
-            },
-            {
-              "color": "#cccccc",
-              "name": "Intervention 3",
-              "timeRange": {
-                "begin": "2020-04-10",
-                "end": "2020-05-01"
-              },
-              "transmissionReduction": {
-                "begin": 64.1,
-                "end": 75.9
-              }
-            },
-            {
-              "color": "#cccccc",
-              "name": "Intervention 4",
-              "timeRange": {
-                "begin": "2020-05-01",
-                "end": "2020-06-10"
-              },
-              "transmissionReduction": {
-                "begin": 56.2,
-                "end": 67.8
-              }
-            },
-            {
-              "color": "#cccccc",
-              "name": "Intervention 5",
-              "timeRange": {
-                "begin": "2020-06-10",
-                "end": "2020-07-20"
-              },
-              "transmissionReduction": {
-                "begin": 47.7,
-                "end": 58.3
-              }
-            },
-            {
-              "color": "#cccccc",
-              "name": "Intervention 6",
-              "timeRange": {
-                "begin": "2020-07-20",
-                "end": "2020-08-25"
-              },
-              "transmissionReduction": {
-                "begin": 54.2,
-                "end": 65.8
-              }
-            },
-            {
-              "color": "#cccccc",
-              "name": "Intervention 7",
-              "timeRange": {
-                "begin": "2020-08-25",
-                "end": "2020-09-15"
-              },
-              "transmissionReduction": {
-                "begin": 40.5,
-                "end": 49.5
-              }
-            },
-            {
-              "color": "#cccccc",
-              "name": "Intervention 8",
-              "timeRange": {
-                "begin": "2020-09-15",
-                "end": "2020-11-27"
-              },
-              "transmissionReduction": {
-                "begin": 46.8,
-                "end": 57.2
-              }
-            }
-          ]
-        },
-        "population": {
-          "ageDistributionName": "Czechia",
-          "caseCountsName": "Czechia",
-          "hospitalBeds": 43531,
-          "icuBeds": 1227,
-          "importsPerDay": 0.1,
-          "initialNumberOfCases": 7814,
-          "populationServed": 10625695,
-          "seroprevalence": 1.0
-        },
-        "simulation": {
-          "numberStochasticRuns": 15,
-          "simulationTimeRange": {
-            "begin": "2020-08-28",
-            "end": "2020-11-26"
-          }
-        }
+	"epidemiological": {
+	  "hospitalStayDays": 10,
+	  "icuStayDays": 20,
+	  "infectiousPeriodDays": 3,
+	  "latencyDays": 3,
+	  "overflowSeverity": 2,
+	  "peakMonth": 0,
+	  "r0": {
+	    "begin": 3.15,
+	    "end": 3.74
+	  },
+	  "seasonalForcing": 0.45
+	},
+	"mitigation": {
+	  "mitigationIntervals": [
+	    {
+	      "color": "#30ed47",
+	      "name": "I6",
+	      "timeRange": {
+		"begin": "2020-03-10T12:00:00.000Z",
+		"end": "2020-03-12T12:00:00.000Z"
+	      },
+	      "transmissionReduction": {
+		"begin": 7,
+		"end": 21
+	      }
+	    },
+	    {
+	      "color": "#3c460c",
+	      "name": "Level 4",
+	      "timeRange": {
+		"begin": "2020-03-12T12:00:00.000Z",
+		"end": "2020-03-17T12:00:00.000Z"
+	      },
+	      "transmissionReduction": {
+		"begin": 46,
+		"end": 64
+	      }
+	    },
+	    {
+	      "color": "#9738f3",
+	      "name": "I5",
+	      "timeRange": {
+		"begin": "2020-03-17T12:00:00.000Z",
+		"end": "2020-03-20T12:00:00.000Z"
+	      },
+	      "transmissionReduction": {
+		"begin": 52,
+		"end": 68
+	      }
+	    },
+	    {
+	      "color": "#584770",
+	      "name": "Level 3",
+	      "timeRange": {
+		"begin": "2020-03-20T12:00:00.000Z",
+		"end": "2020-05-11T11:00:00.000Z"
+	      },
+	      "transmissionReduction": {
+		"begin": 63,
+		"end": 78
+	      }
+	    },
+	    {
+	      "color": "#bf5b17",
+	      "name": "Level 2",
+	      "timeRange": {
+		"begin": "2020-05-11T11:00:00.000Z",
+		"end": "2020-05-25T11:00:00.000Z"
+	      },
+	      "transmissionReduction": {
+		"begin": 43,
+		"end": 57
+	      }
+	    },
+	    {
+	      "color": "#666666",
+	      "name": "Level 1",
+	      "timeRange": {
+		"begin": "2020-05-25T11:00:00.000Z",
+		"end": "2020-06-10T11:00:00.000Z"
+	      },
+	      "transmissionReduction": {
+		"begin": 21,
+		"end": 35
+	      }
+	    },
+	    {
+	      "color": "#9dd3cd",
+	      "name": "Level 0",
+	      "timeRange": {
+		"begin": "2020-06-10T11:00:00.000Z",
+		"end": "2020-09-01T11:00:00.000Z"
+	      },
+	      "transmissionReduction": {
+		"begin": 11,
+		"end": 18
+	      }
+	    },
+	    {
+	      "color": "#101cf4",
+	      "name": "schools open",
+	      "timeRange": {
+		"begin": "2020-09-01T11:00:00.000Z",
+		"end": "2020-09-15T11:00:00.000Z"
+	      },
+	      "transmissionReduction": {
+		"begin": 0,
+		"end": 12
+	      }
+	    },
+	    {
+	      "color": "#68f083",
+	      "name": "masks indoor and few more",
+	      "timeRange": {
+		"begin": "2020-09-15T11:00:00.000Z",
+		"end": "2020-09-23T11:00:00.000Z"
+	      },
+	      "transmissionReduction": {
+		"begin": 20,
+		"end": 35
+	      }
+	    },
+	    {
+	      "color": "#cdeac0",
+	      "name": "events limited 22 Sep",
+	      "timeRange": {
+		"begin": "2020-09-23T11:00:00.000Z",
+		"end": "2020-10-04T11:00:00.000Z"
+	      },
+	      "transmissionReduction": {
+		"begin": 25,
+		"end": 45
+	      }
+	    },
+	    {
+	      "color": "#6d0bae",
+	      "name": "intervention 3 Oct",
+	      "timeRange": {
+		"begin": "2020-10-04T11:00:00.000Z",
+		"end": "2020-10-11T00:00:00.000Z"
+	      },
+	      "transmissionReduction": {
+		"begin": 37,
+		"end": 57
+	      }
+	    },
+	    {
+	      "color": "#6d0bae",
+	      "name": "seasonal reduction",
+	      "timeRange": {
+		"begin": "2020-11-15T11:00:00.000Z",
+		"end": "2021-02-01T00:00:00.000Z"
+	      },
+	      "transmissionReduction": {
+		"begin": 15,
+		"end": 15
+	      }
+	    },
+	    {
+	      "color": "#a004ed",
+	      "name": "Default Intervention from 31 Oct 2020",
+	      "timeRange": {
+		"begin": "2020-10-11T10:00:00.000Z",
+		"end": "2021-02-28T11:00:00.000Z"
+	      },
+	      "transmissionReduction": {
+		"begin": 37,
+		"end": 57
+	      }
+	    }
+	  ]
+
+	},
+	"population": {
+	  "ageDistributionName": "Czechia",
+	  "caseCountsName": "Czechia",
+	  "hospitalBeds": 30000,
+	  "icuBeds": 2400,
+	  "importsPerDay": 5,
+	  "initialNumberOfCases": 400,
+	  "populationServed": 8000000,
+	  "seroprevalence": 2
+	},
+	"simulation": {
+	  "numberStochasticRuns": 30,
+	  "simulationTimeRange": {
+	    "begin": "2020-03-01T12:00:00.000Z",
+	    "end": "2021-01-31T12:00:00.000Z"
+	  }
+	}
       },
       "name": "Czechia"
     },
