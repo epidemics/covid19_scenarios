@@ -5,6 +5,8 @@
   "module": "src/index.tsx",
   "license": "MIT",
   "scripts": {
+    "build": "yarn babel-node --extensions \".ts\" tools/generateTypes.ts",
+    "clean": "rimraf 'src/.generated/latest/{*,.*}' 'data/generated/{*,.*}'",
     "clear": "node ./lib/clear.js",
     "schema:mkdir": "mkdirp 'src/.generated/latest' 'data/generated'",
     "schema:clean": "rimraf 'src/.generated/latest/{*,.*}' 'data/generated/{*,.*}'",
